@@ -104,6 +104,19 @@ app.get('/', (req, res) => {
     res.redirect("/login");
 });
 
+app.get('/profile', (req, res) => {
+    // Example user data
+    const user = {
+        profilePicture: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png', // Replace with your default or actual profile picture path
+        name: 'John Doe',
+        email: 'john.doe@example.com'
+    };
+
+    res.render('MyProfile.ejs', { user });
+});
+
+
+
 // Start the server
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
