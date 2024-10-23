@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-container {
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            width: 400px;
+            text-align: center;
+        }
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .profile-info h2 {
+            margin: 0;
+            color: #333;
+        }
+        .profile-info p {
+            color: #777;
+            margin: 5px 0;
+        }
+        .edit-button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .edit-button:hover {
+            background: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .save-button {
+            background: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .save-button:hover {
+            background: #218838;
+        }
+        .message {
+            margin-top: 15px;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="Profile Picture" class="profile-picture" id="profilePicture">
+        <div class="profile-info">
+            <h2 id="userName">John Doe</h2>
+            <p id="userEmail">john.doe@example.com</p>
+        </div>
+        <button class="edit-button" onclick="toggleEditForm()">Edit Profile</button>
+
+        <form id="edit-form" style="display: none;" onsubmit="saveChanges(event)">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <button type="submit" class="save-button">Save Changes</button>
+        </form>
+
+        <div class="message" id="message" style="display: none;">Profile updated successfully!</div>
+    </div>
+
+    <script>
+        function toggleEditForm() {
+            const form = document.getElementById('edit-form');
+            const isFormVisible = form.style.display === 'block';
+            form.style.display = isFormVisible ? 'none' : 'block';
+            
+            if (!isFormVisible) {
+                // Pre-fill form inputs with current values
+                document.getElementById('name').value = document.getElementById('userName').textContent;
+                document.getElementById('email').value = document.getElementById('userEmail').textContent;
+            }
+        }
+
+        function saveChanges(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('name').value;
+            const emailInput = document.getElementById('email').value;
+
+            // Update displayed information
+            document.getElementById('userName').textContent = nameInput;
+            document.getElementById('userEmail').textContent = emailInput;
+
+            // Show success message
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+
+            // Hide the edit form
+            toggleEditForm();
+
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
