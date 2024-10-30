@@ -1,0 +1,28 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.outerDiv {
+    width:100vw;
+    height: 100vh;
+    background: rgba(59, 59, 166, 0.942);
+    place-items: center;
+}
+
+.innerDiv{
+    width: 8vw;
+    height: 70vh;
+    display: grid;
+    place-items: center;
+}
+
+.main-heading{
+    padding: 20px;
+    color: white;
+    text-shadow: 0 1px 8px rgb(245, 239, 239);
+    font-size: 150px;
+}
+
